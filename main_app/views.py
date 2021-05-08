@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Artist
 
 # Define the home view
@@ -15,3 +16,8 @@ def artists_index(request):
 def artists_detail(request, artist_id):
   artist = Artist.objects.get(id=artist_id)
   return render(request, 'artists/detail.html', { 'artist': artist })
+
+class ArtistCreate(CreateView):
+  model = Artist
+  fields = ['name', 'birth', 'death', 'movement', 'quotes']
+  success_url = '/artists/'

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Artist(models.Model):
     name = models.CharField(max_length=100)
@@ -10,3 +11,5 @@ class Artist(models.Model):
     def __str__(self):
       return self.name
 
+    def get_absolute_url(self):
+      return reverse('detail', kwargs={'artist_id': self.id})
