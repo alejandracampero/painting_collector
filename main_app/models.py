@@ -13,3 +13,14 @@ class Artist(models.Model):
 
     def get_absolute_url(self):
       return reverse('detail', kwargs={'artist_id': self.id})
+
+class Painting(models.Model):
+    title = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+    description = models.TextField(max_length=700)
+    dims = models.TextField()
+    location = models.TextField()
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
+    def __str__(self):
+      return self.title
