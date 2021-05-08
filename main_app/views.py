@@ -11,3 +11,7 @@ def about(request):
 def artists_index(request):
   artists = Artist.objects.all()
   return render(request, 'artists/index.html', { 'artists': artists })
+
+def artists_detail(request, artist_id):
+  artist = Artist.objects.get(id=artist_id)
+  return render(request, 'artists/detail.html', { 'artist': artist })
