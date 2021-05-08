@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Artist
 
 # Define the home view
@@ -20,4 +20,13 @@ def artists_detail(request, artist_id):
 class ArtistCreate(CreateView):
   model = Artist
   fields = ['name', 'birth', 'death', 'movement', 'quotes']
+  success_url = '/artists/'
+
+class ArtistUpdate(UpdateView):
+  model = Artist
+  # Let's disallow the renaming of a artist by excluding the name field!
+  fields = ['name', 'birth', 'death', 'movement', 'quotes']
+
+class ArtistDelete(DeleteView):
+  model = Artist
   success_url = '/artists/'

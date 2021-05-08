@@ -11,6 +11,10 @@
     <p>Movement: {{ artist.movement}}</p>
     <p>Quote: {{ artist.quote }}</p>
   </div>
+   <div class="card-action">
+    <a href="{% url 'artists_update' artist.id %}">Edit</a>
+    <a href="{% url 'artists_delete' artist.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
