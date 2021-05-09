@@ -4,6 +4,10 @@ import uuid
 import boto3
 from .models import Artist, Photo
 from .forms import PaintingForm
+from django.views.generic import ListView, DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'art-collector'
@@ -15,10 +19,12 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def artists_index(request):
-  artists = Artist.objects.all()
+  artists = Artist.objects.filter(user=request.user)
   return render(request, 'artists/index.html', { 'artists': artists })
 
+@login_required
 def artists_detail(request, artist_id):
   artist = Artist.objects.get(id=artist_id)
   painting_form = PaintingForm()
@@ -28,6 +34,11 @@ class ArtistCreate(CreateView):
   model = Artist
   fields = ['name', 'birth', 'death', 'movement', 'quotes']
   success_url = '/artists/'
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user 
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
 
 class ArtistUpdate(UpdateView):
   model = Artist
@@ -38,6 +49,7 @@ class ArtistDelete(DeleteView):
   model = Artist
   success_url = '/artists/'
 
+@login_required
 def add_painting(request, artist_id):
   # create a ModelForm instance using the data in request.POST
   form = PaintingForm(request.POST)
@@ -50,6 +62,7 @@ def add_painting(request, artist_id):
     new_painting.save()
   return redirect('detail', artist_id=artist_id)
 
+@login_required
 def add_photo(request, painting_id):
   # photo-file will be the "name" attribute on the <input type="file">
   photo_file = request.FILES.get('photo-file', None)
@@ -68,3 +81,22 @@ def add_photo(request, painting_id):
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
   return redirect('detail', painting_id=painting_id)
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
