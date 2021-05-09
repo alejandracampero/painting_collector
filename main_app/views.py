@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Artist
 from .forms import PaintingForm
@@ -32,3 +32,15 @@ class ArtistUpdate(UpdateView):
 class ArtistDelete(DeleteView):
   model = Artist
   success_url = '/artists/'
+
+def add_painting(request, artist_id):
+  # create a ModelForm instance using the data in request.POST
+  form = PaintingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the artist_id assigned
+    new_painting = form.save(commit=False)
+    new_painting.artist_id = artist_id
+    new_painting.save()
+  return redirect('detail', artist_id=artist_id)

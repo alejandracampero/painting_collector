@@ -10,6 +10,9 @@ class Artist(models.Model):
 
     def __str__(self):
       return self.name
+    
+    class Meta:
+      ordering = ['name']
 
     def get_absolute_url(self):
       return reverse('detail', kwargs={'artist_id': self.id})
@@ -24,3 +27,6 @@ class Painting(models.Model):
 
     def __str__(self):
       return self.title
+
+    class Meta:
+      ordering = ['title']
