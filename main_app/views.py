@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'art-collector'
@@ -30,7 +31,7 @@ def artists_detail(request, artist_id):
   painting_form = PaintingForm()
   return render(request, 'artists/detail.html', { 'artist': artist, 'painting_form': painting_form })
 
-class ArtistCreate(CreateView):
+class ArtistCreate(LoginRequiredMixin, CreateView):
   model = Artist
   fields = ['name', 'birth', 'death', 'movement', 'quotes']
   success_url = '/artists/'
@@ -40,12 +41,12 @@ class ArtistCreate(CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
-class ArtistUpdate(UpdateView):
+class ArtistUpdate(LoginRequiredMixin, UpdateView):
   model = Artist
   # Let's disallow the renaming of a artist by excluding the name field!
   fields = ['name', 'birth', 'death', 'movement', 'quotes']
 
-class ArtistDelete(DeleteView):
+class ArtistDelete(LoginRequiredMixin, DeleteView):
   model = Artist
   success_url = '/artists/'
 
