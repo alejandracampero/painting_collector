@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Artist
+from .forms import PaintingForm
 
 # Define the home view
 def home(request):
@@ -15,7 +16,8 @@ def artists_index(request):
 
 def artists_detail(request, artist_id):
   artist = Artist.objects.get(id=artist_id)
-  return render(request, 'artists/detail.html', { 'artist': artist })
+  painting_form = PaintingForm()
+  return render(request, 'artists/detail.html', { 'artist': artist, 'painting_form': painting_form })
 
 class ArtistCreate(CreateView):
   model = Artist

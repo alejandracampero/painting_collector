@@ -16,6 +16,11 @@
     <a href="{% url 'artists_delete' artist.id %}">Delete</a>
   </div>
     <div class="col s6">
+      <form method="post">
+      {% csrf_token %}
+      {{ painting_form.as_p }}
+      <input type="submit" class="btn" value="Add Painting">
+      </form>
       <h4>Paintings</h4>
         {% for painting in artist.painting_set.all %}
         <div>
