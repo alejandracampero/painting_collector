@@ -15,6 +15,20 @@
     <a href="{% url 'artists_update' artist.id %}">Edit</a>
     <a href="{% url 'artists_delete' artist.id %}">Delete</a>
   </div>
+    <div class="col s6">
+      <h4>Paintings</h4>
+        {% for painting in artist.painting_set.all %}
+        <div>
+          <ul>
+            <li>Title: {{painting.title}}</li>
+            <li>Year: {{painting.year}}</li>
+            <li>Description {{painting.description}}</li>
+            <li>Dimensions: {{painting.dims}}</li>
+            <li>Location: {{painting.location}}</li>
+          </ul>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
