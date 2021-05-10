@@ -43,13 +43,35 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A  {{ art.title }}
+              {{ art.title }}
             </span>
           </div>
         </div>
       {% endfor %}
     {% else %}
       <h5>No Art</h5>
+    {% endif %}
+  </div>
+  <div class="col s6">
+    <h3>List of Art</h3>
+    {% if art.count %}
+      {% for art in art.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ art.title}}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_art' artist.id art.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{artist.name}} Already Shows All Pieces of Art</h5>
     {% endif %}
   </div>
 </div>

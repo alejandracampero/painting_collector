@@ -28,8 +28,9 @@ def artists_index(request):
 @login_required
 def artists_detail(request, artist_id):
   artist = Artist.objects.get(id=artist_id)
+  art_artist_doesnt_have = Art.objects.exclude(id__in = artist.art.all().values_list('id'))
   painting_form = PaintingForm()
-  return render(request, 'artists/detail.html', { 'artist': artist, 'painting_form': painting_form })
+  return render(request, 'artists/detail.html', { 'artist': artist, 'painting_form': painting_form,'art': art_artist_doesnt_have })
 
 class ArtistCreate(LoginRequiredMixin, CreateView):
   model = Artist
@@ -120,3 +121,8 @@ class ArtUpdate(UpdateView):
 class ArtDelete(DeleteView):
   model = Art
   success_url = '/art/'
+
+def assoc_art(request, artist_id, art_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Artist.objects.get(id=artist_id).art.add(art_id)
+  return redirect('detail', artist_id=artist_id)

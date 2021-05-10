@@ -15,6 +15,7 @@ urlpatterns = [
   path('art/<int:pk>/update/', views.ArtUpdate.as_view(), name='art_update'),
   path('art/<int:pk>/delete/', views.ArtDelete.as_view(), name='art_delete'),
   path('art/', views.ArtList.as_view(), name='art_index'),
+  path('artists/<int:artist_id>/assoc_art/<int:art_id>/', views.assoc_art, name='assoc_art'),
   path('artists/<int:artist_id>/add_painting/add_photo/', views.add_photo, name='add_photo'),
   path('accounts/signup/', views.signup, name='signup'),
 ]
