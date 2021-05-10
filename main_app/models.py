@@ -2,12 +2,26 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+class Art(models.Model):
+  title = models.CharField(max_length=100)
+  year = models.CharField(max_length=100)
+  description = models.TextField(max_length=700)
+  dims = models.TextField()
+  location = models.TextField()
+
+  def __str__(self):
+    return self.title
+
+  def get_absolute_url(self):
+    return reverse('art_detail', kwargs={'pk': self.id})
+
 class Artist(models.Model):
     name = models.CharField(max_length=100)
     birth = models.IntegerField()
     death = models.IntegerField()
     movement = models.TextField()
     quotes = models.TextField()
+    art = models.ManyToManyField(Art)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
