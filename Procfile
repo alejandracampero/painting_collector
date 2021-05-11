@@ -1,0 +1,1 @@
+web: gunicorn painting_collector.wsgi
