@@ -2,6 +2,12 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+TYPES = (
+    ('P', 'Painting'),
+    ('S', 'Sculpture'),
+    ('D', 'Drawing')
+)
+
 class Art(models.Model):
   title = models.CharField(max_length=100)
   year = models.CharField(max_length=100)
@@ -33,19 +39,19 @@ class Artist(models.Model):
     def get_absolute_url(self):
       return reverse('detail', kwargs={'artist_id': self.id})
 
-class Painting(models.Model):
-    title = models.CharField(max_length=100)
-    year = models.CharField(max_length=100)
-    description = models.TextField(max_length=700)
-    dims = models.TextField()
-    location = models.TextField()
+class Type(models.Model):
+    type = models.CharField(
+    max_length=1,
+    # add the 'choices' field option
+    choices=TYPES,
+    # set the default value for Type to be 'P'
+    default=TYPES[0][0]
+  )
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
 
     def __str__(self):
-      return self.title
+          return f"{self.get_type_display()}"
 
-    class Meta:
-      ordering = ['title']
 
 class Photo(models.Model):
   url = models.CharField(max_length=200)

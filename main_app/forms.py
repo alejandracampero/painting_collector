@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Painting
+from .models import Type
 
-class PaintingForm(ModelForm):
+class TypeForm(ModelForm):
   class Meta:
-    model = Painting
-    fields = ['title', 'year', 'description', 'dims', 'location']
+    model = Type
+    fields = ['type']

@@ -15,7 +15,7 @@
     <a href="{% url 'artists_update' artist.id %}">Edit</a>
     <a href="{% url 'artists_delete' artist.id %}">Delete</a>
   </div>
-     {% for photo in artist.photo_set.all %}
+    {% for photo in artist.photo_set.all %}
       <img class="responsive-img card-panel" src="{{photo.url}}">
     {% empty %}
       <div class="card-panel teal-text center-align">No Photos Uploaded</div>
@@ -25,26 +25,27 @@
     <input type="file" name="photo-file">
     <br><br>
     <input type="submit" class="btn" value="Upload Photo">
-</form>
+    </form>  
     <div class="col s6">
-      <form action="{% url 'add_painting' artist.id %}" method="post">
-      {% csrf_token %}
-      {{ painting_form.as_p }}
-      <input type="submit" class="btn" value="Add Painting">
-      </form>
-      <h4>Paintings</h4>
-        {% for painting in artist.painting_set.all %}
-        <div>
-          <ul>
-            <li>Title: {{painting.title}}</li>
-            <li>Year: {{painting.year}}</li>
-            <li>Description {{painting.description}}</li>
-            <li>Dimensions: {{painting.dims}}</li>
-            <li>Location: {{painting.location}}</li>
-          </ul>
-        </div>
+       <form form action="{% url 'add_type' artist.id %}" method="post">
+        {% csrf_token %}
+        {{ type_form.as_p }}
+        <input type="submit" class="btn" value="Add Type">
+       </form>
+   <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th>Type of Art</th></tr>
+      </thead>
+      <tbody>
+        {% for type in artist.type_set.all %}
+          <tr>
+            <td>{{type.get_type_display}}</td>
+          </tr>
         {% endfor %}
-    </div>
+      </tbody>
+    </table>
+  </div>
 <hr>
 <div class="row">
   <div class="col s6">
@@ -85,6 +86,11 @@
       <h5>{{artist.name}} Already Shows All Pieces of Art</h5>
     {% endif %}
   </div>
+  <script>
+  // add additional JS to initialize select below
+  var selectEl = document.getElementById('id_type');
+  M.FormSelect.init(selectEl);
+</script>
 </div>
 
 {% endblock %}

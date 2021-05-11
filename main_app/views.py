@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import uuid
 import boto3
 from .models import Artist, Art, Photo
-from .forms import PaintingForm
+from .forms import TypeForm
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -29,8 +29,8 @@ def artists_index(request):
 def artists_detail(request, artist_id):
   artist = Artist.objects.get(id=artist_id)
   art_artist_doesnt_have = Art.objects.exclude(id__in = artist.art.all().values_list('id'))
-  painting_form = PaintingForm()
-  return render(request, 'artists/detail.html', { 'artist': artist, 'painting_form': painting_form,'art': art_artist_doesnt_have })
+  type_form = TypeForm()
+  return render(request, 'artists/detail.html', { 'artist': artist, 'type_form': type_form,'art': art_artist_doesnt_have })
 
 class ArtistCreate(LoginRequiredMixin, CreateView):
   model = Artist
@@ -52,16 +52,16 @@ class ArtistDelete(LoginRequiredMixin, DeleteView):
   success_url = '/artists/'
 
 @login_required
-def add_painting(request, artist_id):
+def add_type(request, artist_id):
   # create a ModelForm instance using the data in request.POST
-  form = PaintingForm(request.POST)
+  form = TypeForm(request.POST)
   # validate the form
   if form.is_valid():
     # don't save the form to the db until it
     # has the artist_id assigned
-    new_painting = form.save(commit=False)
-    new_painting.artist_id = artist_id
-    new_painting.save()
+    new_type = form.save(commit=False)
+    new_type.artist_id = artist_id
+    new_type.save()
   return redirect('detail', artist_id=artist_id)
 
 @login_required
