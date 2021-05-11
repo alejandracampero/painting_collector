@@ -65,7 +65,7 @@ def add_painting(request, artist_id):
   return redirect('detail', artist_id=artist_id)
 
 @login_required
-def add_photo(request, painting_id):
+def add_photo(request, artist_id):
   # photo-file will be the "name" attribute on the <input type="file">
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
@@ -77,12 +77,12 @@ def add_photo(request, painting_id):
       s3.upload_fileobj(photo_file, BUCKET, key)
       # build the full url string
       url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      # we can assign to painting_id or painting (if you have a painting object)
-      photo = Photo(url=url, painting_id=painting_id)
+      # we can assign to artist_id or artist (if you have a artist object)
+      photo = Photo(url=url, artist_id=artist_id)
       photo.save()
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
-  return redirect('detail', painting_id=painting_id)
+  return redirect('detail', artist_id=artist_id)
 
 def signup(request):
   error_message = ''

@@ -49,7 +49,7 @@ class Painting(models.Model):
 
 class Photo(models.Model):
   url = models.CharField(max_length=200)
-  painting = models.ForeignKey(Painting, on_delete=models.CASCADE)
+  artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
 
   def __str__(self):
-    return f"Photo for painting_id: {self.painting_id} @{self.url}"
+    return f"Photo for artist_id: {self.artist_id} @{self.url}"
