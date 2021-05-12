@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: linear-gradient(to right top, #8f5d7a, #89567f, #7f5186, #6f4e8f, #594c97, #4857a2, #3161aa, #006ab0, #007eb4, #008fb2, #239fac, #57ada7);
   }
   
   main {
