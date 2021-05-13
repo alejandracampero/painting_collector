@@ -1,8 +1,9 @@
 body {
     display: flex;
+    font-style: blanchedalmond;
     min-height: 100vh;
     flex-direction: column;
-    background-image: linear-gradient(to right top, #8f5d7a, #89567f, #7f5186, #6f4e8f, #594c97, #4857a2, #3161aa, #006ab0, #007eb4, #008fb2, #239fac, #57ada7);
+    background-image: linear-gradient(to bottom, #80325f, #793661, #713a62, #6a3d62, #633f61, #553f60, #483f5c, #3d3e56, #2c394a, #24333c, #212b2e, #202323);
   }
   
   main {

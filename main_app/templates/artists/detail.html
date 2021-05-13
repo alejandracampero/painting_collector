@@ -27,24 +27,52 @@
     <a href="{% url 'artists_update' artist.id %}">Edit</a>
     <a href="{% url 'artists_delete' artist.id %}">Delete</a>
   </div> {% endcomment %}
-    {% for photo in artist.photo_set.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Some Works of Art</h5>
+      {% for photo in artist.photo_set.all %}
+        <img class="card-img-top" src="{{photo.url}}">
+      {% empty %}
+        <div class="card-text">No Photos Uploaded</div>
+      {% endfor %}
+    </div>
     <form action="{% url 'add_photo' artist.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
-    </form>  
-    <div class="col s6">
-       <form form action="{% url 'add_type' artist.id %}" method="post">
-        {% csrf_token %}
-        {{ type_form.as_p }}
-        <input type="submit" class="btn" value="Add Type">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <input type="submit" class="btn" value="Upload Photo">
+      </form>  
+   </div>
+   
+
+
+  <div class="col s6">
+   
+    <table class="table table-striped table-dark">
+     <div class="col s6">
+        <form form action="{% url 'add_type' artist.id %}" method="post">
+          {% csrf_token %}
+          {{ type_form.as_p }}
+          <input type="submit" class="btn" value="Add Type">
        </form>
-   <div class="col s6">
+     </div>
+      <thead>
+        <tr><th scope="col">Type of Art</th></tr>
+      </thead>
+      <tbody>
+        {% for type in artist.type_set.all %}
+          <tr>
+            <td>{{type.get_type_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+   {% comment %} <div class="col s6">
     <table class="striped">
       <thead>
         <tr><th>Type of Art</th></tr>
@@ -57,7 +85,7 @@
         {% endfor %}
       </tbody>
     </table>
-  </div>
+  </div> {% endcomment %}
 <hr>
 <div class="row">
   <div class="col s6">
@@ -76,6 +104,7 @@
       <h5>No Art</h5>
     {% endif %}
   </div>
+
   <div class="col s6">
     <h3>List of Art</h3>
     {% if art.count %}
@@ -98,11 +127,12 @@
       <h5>{{artist.name}} Already Shows All Pieces of Art</h5>
     {% endif %}
   </div>
+  
   <script>
   // add additional JS to initialize select below
-  var selectEl = document.getElementById('id_type');
-  M.FormSelect.init(selectEl);
-</script>
+   var selectEl = document.getElementById('id_type');
+   M.FormSelect.init(selectEl);
+ </script>
 </div>
 
 {% endblock %}
