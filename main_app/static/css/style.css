@@ -97,3 +97,11 @@ body {
     justify-self: center;
     margin-bottom: 10%;
   }
+
+  #artist_det{
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-top: 6%;
+    border-width: 0.5rem;
+  }
