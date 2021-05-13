@@ -22,6 +22,6 @@ body {
     border-color: blanchedalmond;
     border-width: 0.2rem;
     margin-bottom: 2rem;
-    width: min-content;
+    max-width: 120 rem;
     align-items: center;
   }
