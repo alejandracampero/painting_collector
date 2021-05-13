@@ -103,25 +103,26 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class ArtList(ListView):
+class ArtList(LoginRequiredMixin, ListView):
   model = Art
 
-class ArtDetail(DetailView):
+class ArtDetail(LoginRequiredMixin, DetailView):
   model = Art
 
-class ArtCreate(CreateView):
-  model = Art
-  fields = '__all__'
-
-class ArtUpdate(UpdateView):
+class ArtCreate(LoginRequiredMixin, CreateView):
   model = Art
   fields = '__all__'
 
+class ArtUpdate(LoginRequiredMixin, UpdateView):
+  model = Art
+  fields = '__all__'
 
-class ArtDelete(DeleteView):
+
+class ArtDelete(LoginRequiredMixin, DeleteView):
   model = Art
   success_url = '/art/'
 
+@login_required
 def assoc_art(request, artist_id, art_id):
   # Note that you can pass a toy's id instead of the whole object
   Artist.objects.get(id=artist_id).art.add(art_id)
