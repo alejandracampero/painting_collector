@@ -28,11 +28,11 @@
     <a href="{% url 'artists_delete' artist.id %}">Delete</a>
   </div> {% endcomment %}
 
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 80rem;">
     <div class="card-body">
       <h5 class="card-title">Some Works of Art</h5>
       {% for photo in artist.photo_set.all %}
-        <img class="card-img-top" src="{{photo.url}}">
+        <img class="card-img-top" src="{{photo.url}}" style="max-width: 25rem;">
       {% empty %}
         <div class="card-text">No Photos Uploaded</div>
       {% endfor %}
@@ -41,7 +41,7 @@
       {% csrf_token %}
       <input type="file" name="photo-file">
       <br><br>
-      <input type="submit" class="btn" value="Upload Photo">
+      <input type="submit" class="btn btn-success" value="Upload Photo">
       </form>  
    </div>
    
@@ -54,7 +54,7 @@
         <form form action="{% url 'add_type' artist.id %}" method="post">
           {% csrf_token %}
           {{ type_form.as_p }}
-          <input type="submit" class="btn" value="Add Type">
+          <input type="submit"  class="btn btn-success" value="Add Type">
        </form>
      </div>
       <thead>
