@@ -1,6 +1,7 @@
 body {
     display: flex;
-    font-style: blanchedalmond;
+    font-family: 'Fredericka the Great';
+    color: white;
     min-height: 100vh;
     flex-direction: column;
     background-image: linear-gradient(to bottom, #80325f, #793661, #713a62, #6a3d62, #633f61, #553f60, #483f5c, #3d3e56, #2c394a, #24333c, #212b2e, #202323);
@@ -13,4 +14,14 @@ body {
   footer.page-footer {
     padding-top: 0;
     text-align: right;
+  }
+
+  .card {
+    background-color: rgb(58, 55, 55) ;
+    border-radius: 5%;
+    border-color: blanchedalmond;
+    border-width: 0.2rem;
+    margin-bottom: 2rem;
+    width: min-content;
+    align-items: center;
   }
