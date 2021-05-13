@@ -63,5 +63,10 @@ body {
   form {
     display: grid;
     justify-content: center;
-  
+  }
+
+  #submit {
+    margin-top: 5%;
+    width: 10rem;
+    justify-self: center;
   }
