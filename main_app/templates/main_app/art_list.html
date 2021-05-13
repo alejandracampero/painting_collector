@@ -2,7 +2,8 @@
 {% block content %}
 
 <h1>Art List</h1>
-
+<ul>
+  <main>
 {% for art in art_list %}
    <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -14,7 +15,8 @@
       <a href="{% url 'art_detail' art.id %}" class="btn btn-primary">Details</a>
     </div>
    </div>
-  </a>
-{% endfor %}
 
+{% endfor %}
+</main>
+</ul>
 {% endblock %}
