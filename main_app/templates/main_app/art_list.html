@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+<header>
+    <h1>Art List</h1>
+</header> 
 
-<h1>Art List</h1>
 <ul>
-  <main>
-{% for art in art_list %}
-   <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ art.title }}</h5>
-            <p>Year: {{ art.year }}</p>
-            <p>Description: {{ art.description }}</p>
-            <p>Dims: {{ art.dims }}</p>
-            <p>Location: {{ art.location }}</p>
-      <a href="{% url 'art_detail' art.id %}" class="btn btn-primary">Details</a>
-    </div>
-   </div>
+  <main id="list">
+    {% for art in art_list %}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ art.title }}</h5>
+                <p>Year: {{ art.year }}</p>
+                <p>Description: {{ art.description }}</p>
+                <p>Dims: {{ art.dims }}</p>
+                <p>Location: {{ art.location }}</p>
+          <a href="{% url 'art_detail' art.id %}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
 
-{% endfor %}
-</main>
+    {% endfor %}
+  </main>
 </ul>
 {% endblock %}
