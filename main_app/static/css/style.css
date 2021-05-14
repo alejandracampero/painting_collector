@@ -4,7 +4,7 @@ body {
     color: white;
     min-height: 100vh;
     flex-direction: column;
-    background-image: linear-gradient(to bottom, #80325f, #793661, #713a62, #6a3d62, #633f61, #553f60, #483f5c, #3d3e56, #2c394a, #24333c, #212b2e, #202323);
+    background-image: linear-gradient(to bottom, #615a5d, #5a5457, #534d51, #4d474b, #464145, #403d41, #3a383d, #343438, #2e3033, #282c2e, #242728, #202323);
   }
   
   main {
@@ -26,7 +26,8 @@ body {
 
   .about_p {
     margin-top: 5% ;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    color:rgb(255, 255, 255)
   }
 
   .card-img-top{
@@ -48,6 +49,7 @@ body {
     margin-top: 6%;
   }
   header{
+    font-size: small;
     display: grid;
     text-align: center;
   }
@@ -127,4 +129,5 @@ body {
     margin-top: 6%;
     border-width: 0.5rem;
   }
+
 
