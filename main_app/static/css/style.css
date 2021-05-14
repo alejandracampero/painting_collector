@@ -73,10 +73,6 @@ body {
     justify-self: center;
   }
 
-  #about{
-    margin-top: 10%;
-    margin-left: 38%;
-  }
 
   #pictures{
     display: flex;
