@@ -74,6 +74,6 @@ The project can be played and viewed [here](https://art-library.herokuapp.com/).
 
 ### ***CREDITS***
 
-##### Buttons Styling: [getbootstrap.com](https://getbootstrap.com/)
+##### Styling: [getbootstrap.com](https://getbootstrap.com/)
 ##### Font: [Google Fonts](https://fonts.google.com/)
 
