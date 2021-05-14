@@ -19,24 +19,24 @@ The project can be played and viewed [here](https://art-library.herokuapp.com/).
 
 ### ***Screenshots:***
 
-### Log-In Page:
+### About Page:
 
-![alt text]()
+![alt text](https://i.imgur.com/uhFTHHF.png)
 
 ***
 ### Artist Index Page:
 
-![alt text]()
+![alt text](https://i.imgur.com/RxxDO9R.png)
 
 ***
 ### Art Index Page:
 
-![alt text]()
+![alt text](https://i.imgur.com/0aGJ0ot.png)
 
 ***
 ### Forms:
 
-![alt text]()
+![alt text](https://i.imgur.com/4d4oiTm.png)
 
 ***
 
@@ -56,7 +56,7 @@ The project can be played and viewed [here](https://art-library.herokuapp.com/).
 * GitHub
 * Git
 * Visual Studio Code
-* Bootstap
+
 
 ***
 
@@ -74,8 +74,6 @@ The project can be played and viewed [here](https://art-library.herokuapp.com/).
 
 ### ***CREDITS***
 
-##### App Background: [Vecteezy](https://www.vecteezy.com/vector-art/273920-deep-ocean-background)
 ##### Buttons Styling: [getbootstrap.com](https://getbootstrap.com/)
 ##### Font: [Google Fonts](https://fonts.google.com/)
-##### GIFs: [Giphy](https://giphy.com/)
 
