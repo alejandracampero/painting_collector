@@ -2,7 +2,10 @@
   
 {% block content %}
   {% if object %}
+  <header>
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+  </header> 
+    
   {% else %}
    <header>
     <h1>Add Art</h1>

@@ -122,3 +122,9 @@ body {
     margin-bottom: 5%;
   }
 
+  #cancel {
+    font-size: 1.5rem;
+    margin-top: 6%;
+    border-width: 0.5rem;
+  }
+

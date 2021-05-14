@@ -4,19 +4,18 @@
    <h1>Art Details</h1>
 </header> 
 
-<div class="card" style="width: 18rem;">
+<div class="card" id="artist_det">
   <div class="card-body">
-    <h5 class="card-title">{{ art.title }}</h5>
+  <header>
+    <h2 class="card-title">{{ art.title }}</h2>
+  </header> 
     <p class="card-text">Description: {{ art.description }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Year: {{ art.year }}</li>
-    <li class="list-group-item">Dims: {{ art.dims }}</li>
-    <li class="list-group-item">Location: {{ art.location }}</li>
-  </ul>
-  <div class="card-body">
-    <a href="{% url 'art_update' art.id %}">Edit</a>
-    <a href="{% url 'art_delete' art.id %}">Delete</a>
+    <p>Year: {{ art.year }}</p>
+    <p>Dims: {{ art.dims }}</p>
+    <p>Location: {{ art.location }}</p>
+    <a href="{% url 'art_update' art.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'art_delete' art.id %}" class="btn btn-danger">Delete</a>
   </div>
 </div>
+
 {% endblock %}

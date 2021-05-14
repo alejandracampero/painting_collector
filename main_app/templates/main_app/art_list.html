@@ -9,11 +9,10 @@
     {% for art in art_list %}
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{ art.title }}</h5>
-                <p>Year: {{ art.year }}</p>
-                <p>Description: {{ art.description }}</p>
-                <p>Dims: {{ art.dims }}</p>
-                <p>Location: {{ art.location }}</p>
+        <header>
+          <h5 class="card-title">{{ art.title }}</h5>  
+        </header> 
+          <p>Description: {{ art.description }}</p>  
           <a href="{% url 'art_detail' art.id %}" class="btn btn-primary">Details</a>
         </div>
       </div>

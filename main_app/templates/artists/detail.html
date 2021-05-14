@@ -13,7 +13,7 @@
     <p>Birth: {{ artist.birth }}</p>
     <p>Death: {{ artist.death }}</p>
     <p>Movement: {{ artist.movement}}</p>
-    <p>Quote: {{ artist.quote }}</p>
+    <p>Quotes: {{ artist.quotes }}</p>
     <a href="{% url 'artists_update' artist.id %}" class="btn btn-primary">Edit</a>
     <a href="{% url 'artists_delete' artist.id %}" class="btn btn-danger">Delete</a>
   </div>
